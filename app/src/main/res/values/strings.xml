@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Books</string>
+    <string name="app_desc">Book Description</string>
+    <string name="about_this_book">About this book</string>
+    <string name="published_by">Published by</string>
+</resources>
