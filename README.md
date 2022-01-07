@@ -9,6 +9,10 @@ A sample project that presents a modern approach to Android app development usin
 ## Jetpack Compose
 Jetpack Compose is Android’s modern toolkit for building native UI. It simplifies and accelerates UI development on Android. Quickly bring your app to life with less code, powerful tools, and intuitive Kotlin APIs.
 
+## Navigating with Compose
+The Navigation component provides support for Jetpack Compose applications. You can navigate between composables while taking advantage of the Navigation component’s infrastructure and features.
+
+
 ## kotlin flows
 Flows are built on top of coroutines and can provide multiple values. A flow is conceptually a stream of data that can be computed asynchronously. 
 
