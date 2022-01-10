@@ -3,8 +3,10 @@ package com.compose.books.domain.use_cases
 import com.compose.books.common.Resource
 import com.compose.books.domain.models.BooksModel
 import com.compose.books.domain.repository.BooksRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
@@ -26,7 +28,6 @@ class GetBooksUseCase @Inject constructor(val booksRepository: BooksRepository) 
             emit(Resource.Error<BooksModel>("Please check your internet connecion and try again later."))
         }
 
-    }
-
+    }.flowOn(Dispatchers.IO)
 
 }
