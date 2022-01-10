@@ -5,10 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.compose.books.common.Resource
-import com.compose.books.domain.models.BooksModel
 import com.compose.books.domain.use_cases.GetBooksUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
@@ -23,7 +21,7 @@ class BooksViewModel @Inject constructor(val getBooksUseCase: GetBooksUseCase) :
         getBooks()
     }
 
-    fun getBooks() {
+    private fun getBooks() {
         getBooksUseCase().onEach { result ->
             when (result) {
                 is Resource.Loading -> {
