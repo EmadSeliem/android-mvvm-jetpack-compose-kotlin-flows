@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.compose.books.common.Resource
 import com.compose.books.domain.use_cases.GetBooksUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
@@ -14,6 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class BooksViewModel @Inject constructor(val getBooksUseCase: GetBooksUseCase) : ViewModel() {
 
+    private var getBookJob: Job? = null
     private val _state = mutableStateOf(BooksListState())
     val state: State<BooksListState> = _state
 
@@ -22,7 +24,8 @@ class BooksViewModel @Inject constructor(val getBooksUseCase: GetBooksUseCase) :
     }
 
     private fun getBooks() {
-        getBooksUseCase().onEach { result ->
+        getBookJob?.cancel()
+        getBookJob = getBooksUseCase().onEach { result ->
             when (result) {
                 is Resource.Loading -> {
                     _state.value = BooksListState(isLoading = true)
